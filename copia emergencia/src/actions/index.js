@@ -74,7 +74,7 @@ export function getByName(name){
 
 export function orderName(payload){
     return {
-        type: 'ORDER',
+        type: 'ORDER_BY_NAME',
         payload
     }
 }
@@ -97,7 +97,7 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY = 'GET_COUNTRY';
 export const GET_BY_NAME = 'GET_BY_NAME';
 export const GET_ACTIVITY = 'GET_ACTIVITY';
-export const ORDER = 'ORDER';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const FILTER_ACTIVITY = 'FILTER_ACTIVITY';
 export const POST_ACTIVITY = "POST_ACTIVITY"

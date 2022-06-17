@@ -3,7 +3,7 @@ const router = Router();
 const axios = require('axios');
 const { Country, Activity} = require('../db.js')
 const Sequelize = require('sequelize')
-//activities
+
 
 router.get('/', async (req,res) => {
     try {
@@ -17,7 +17,6 @@ router.get('/', async (req,res) => {
 router.post("/",async(req,res)=>{
     try{
         let {name, difficulty, duration, season, countries} = req.body
-        // Se crea la actividad
         let newActivity = await Activity.create({
             name,
             difficulty,

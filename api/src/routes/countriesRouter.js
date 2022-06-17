@@ -6,7 +6,7 @@ const Sequelize = require('sequelize')
 const axios = require('axios');
 
 //Traemos las tablas de db
-const { Country, Activity, country_activity} = require('../db.js');
+const { Country, Activity} = require('../db.js');
 
 // const Countries = require('./countries.js');
 
@@ -43,8 +43,6 @@ router.get('/', async (req,res) => {
 
     const queryName = req.query.name
 
-    const queryOrder = req.query.order
-
 
     let bd = await Country.findAll({
         include: {
@@ -73,23 +71,6 @@ router.get('/', async (req,res) => {
         res.status(200).send(countryName) :
         res.status(404).send('No se encontro el pais')
     } 
-    else if(queryOrder){
-        try {
-        let country = await Country.findAll({
-            // Trae hasta 9 paises
-            // limit : 9,
-            // Paginado - desde donde empieza a contar
-            // offset: req.query.page,
-            order : [['population', queryOrder]],
-            include: {
-                model: Activity,
-            }
-        })
-        res.status(200).send(country)
-        } catch (error) {
-        res.status(500).send('Error')
-        }
-    } 
     else {
         let full = await Country.findAll({
             include: {
@@ -102,9 +83,6 @@ router.get('/', async (req,res) => {
 })
 
 router.get('/:idPais', async (req,res) => {
-    // Obtener el detalle de un país en particular
-    // Debe traer solo los datos pedidos en la ruta de detalle de país
-    // Incluir los datos de las actividades turísticas correspondientes
 
     const countryId = req.params.idPais
     let aux = countryId.toUpperCase();
