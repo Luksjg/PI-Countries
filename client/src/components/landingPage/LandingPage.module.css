@@ -1,0 +1,39 @@
+.container{
+    display: inline-block;
+    margin-top: 100px;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #211C42;
+    background-color: white;
+    opacity: 0.9;
+}
+
+.title{
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 150px;
+    font-weight: 800;
+    color:transparent;
+    background-image: url(../../images/worldgif2.gif);
+    background-position: center;
+    background-clip: text;
+}
+
+.btn{
+    display: inline-block;
+    flex: auto;
+    margin:15px;
+    background-color: white;
+    opacity: 0.9;
+    padding: 8px;
+    border:1px solid #211C42;
+    border-radius: 10px;
+    font-size: 25px;
+    width: 120px;
+}
+
+.btn:hover{
+    border: 1px solid black;
+    box-shadow: 0 0 10px #211C42;
+}

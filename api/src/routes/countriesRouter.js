@@ -58,18 +58,18 @@ router.get('/', async (req,res) => {
 
 
     if(queryName){
-        let countryName = await Country.findAll({
-            where : {
-                name: {
-                    // Operador que busca coincidencias y no es case sensitive
-                    //Si solo pongo queryName me toma la busqueda exacta
-                    [Sequelize.Op.iLike] : `%${queryName}%`
+        try {
+            let countryName = await Country.findAll({
+                where : {
+                    name: {
+                        [Sequelize.Op.iLike] : `%${queryName}%`
+                    }
                 }
-            }
-        })
-        countryName.length ?
-        res.status(200).send(countryName) :
-        res.status(404).send('No se encontro el pais')
+            })
+            res.status(200).send(countryName) 
+        } catch (error) {
+            res.status(404).send('')
+        }
     } 
     else {
         let full = await Country.findAll({
@@ -92,8 +92,9 @@ router.get('/:idPais', async (req,res) => {
             model : Activity
         }
     })
-
-    res.status(200).send(countryById)
+    countryById ?
+    res.status(200).send(countryById):
+    res.status(404).send(":v")
 })
 
 module.exports = router;

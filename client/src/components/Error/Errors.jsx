@@ -1,16 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './Errors.css';
+import styles from './Errors.module.css';
 
 export default function Errors(){
     return (
-        <div className="ErrorContainer">
-            <div>
-                <h1>Pagina no encontrada</h1>
-                <Link to="/">
-                    <button>Home</button>
-                </Link>
-            </div>
+        <div className={styles.bg}>
+            <h1 className={styles.error}>404</h1>
+            <Link to="/home" >
+                <button className={styles.btn}>Home</button>
+            </Link>
         </div>
     )
 }

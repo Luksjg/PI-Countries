@@ -1,31 +1,23 @@
 import axios from 'axios'
 
-// function paginado(data, page = 1){
-//     let countriesPage = 9;
-//     let currentPage = 1;
-//     if (page > 1){
-//         currentPage = page;
-//     }
-//     let totalPages = Math.ceil(data.length / countriesPage);
-//     //Posicion del ultimo pais
-//     const LastCountry = currentPage * countriesPage;
-//     //Posicion del primer pais
-//     const FirstCountry = LastCountry - countriesPage;
-//     // Se divide el array de acuerdo a la cantidad de paises necesarios (9)
-//     const currentCountries = data.slice(FirstCountry, LastCountry);
-//     return {currentCountries, totalPages}
-// }
+export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const GET_COUNTRY = 'GET_COUNTRY';
+export const GET_BY_NAME = 'GET_BY_NAME';
+export const GET_ACTIVITY = 'GET_ACTIVITY';
+export const ORDER = 'ORDER';
+export const FILTER_CONTINENT = 'FILTER_CONTINENT';
+export const FILTER_ACTIVITY = 'FILTER_ACTIVITY';
+export const POST_ACTIVITY = "POST_ACTIVITY"
 
-// Conexion con el backend
-export function getCountries(order){
+
+export function getCountries(){
     return async function(dispatch){
         let json = await axios.get('http://localhost:3001/countries');
         const data = json.data
-        //const {currentCountries, totalPages} = paginado(data)
         return dispatch({
-            type: 'GET_COUNTRIES',
+            type: GET_COUNTRIES,
             payload: data
-            //payload: {data, currentCountries, totalPages, actualPage : 1}   
+   
         })
     }
 }
@@ -35,7 +27,7 @@ export const getCountry = (id) => dispatch => {
     .then(response => response.json())
     .then(data => {
         dispatch({
-            type: 'GET_COUNTRY', 
+            type: GET_COUNTRY, 
             payload: data });
     });
 };
@@ -44,7 +36,7 @@ export function getActivities(){
     return async function(dispatch){
         let json = await axios.get('http://localhost:3001/activities');
         return dispatch({
-            type: 'GET_ACTIVITY',
+            type: GET_ACTIVITY,
             payload: json.data   
         })
     }
@@ -62,10 +54,14 @@ export function getByName(name){
     return async function(dispatch){
         try {
             let json = await axios.get('http://localhost:3001/countries?name=' + name);
+            console.log(json)
+            if(json.data.length<1){
+                return alert("Pais no encontrado :(")
+            }else{
             return dispatch({
-                type: 'GET_BY_NAME',
+                type: GET_BY_NAME,
                 payload: json.data
-            })
+            })}
         } catch (error) {
             console.log('No se pudo encontrar el pais')
         }
@@ -74,30 +70,21 @@ export function getByName(name){
 
 export function order(payload){
     return {
-        type: 'ORDER',
+        type: ORDER,
         payload
     }
 }
 
 export function filterByContinent(payload){
     return {
-        type: 'FILTER_CONTINENT',
+        type: FILTER_CONTINENT,
         payload
     }
 }
 
 export function filterByActivity(payload){
     return {
-        type: 'FILTER_ACTIVITY',
+        type: FILTER_ACTIVITY,
         payload
     }
 }
-
-export const GET_COUNTRIES = 'GET_COUNTRIES';
-export const GET_COUNTRY = 'GET_COUNTRY';
-export const GET_BY_NAME = 'GET_BY_NAME';
-export const GET_ACTIVITY = 'GET_ACTIVITY';
-export const ORDER = 'ORDER';
-export const FILTER_CONTINENT = 'FILTER_CONTINENT';
-export const FILTER_ACTIVITY = 'FILTER_ACTIVITY';
-export const POST_ACTIVITY = "POST_ACTIVITY"

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCountries, postActivity } from '../../actions/index'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router'
-
+import styles from "./CreateActivity.module.css"
 
 export default function CreateActivity(){
     const [input, setInput] = useState({
@@ -100,9 +100,9 @@ export default function CreateActivity(){
     }, [dispatch])
 
     return(
-        <div>
+        <div className={styles.container}>
             <div>
-                <Link to="/home"><button className='button'>Volver</button></Link>
+                <Link to="/home"><button className={styles.btn}>Volver</button></Link>
             </div>
 
             <h1>Crear actividad</h1>
@@ -125,7 +125,7 @@ export default function CreateActivity(){
                 <div>
                     <p>Duracion</p>
                     {errors.duration ? <p> {errors.duration} </p> : null}
-                    <input type="text" value={input.duration} name="duration" onChange={e=>handleChange(e)}></input><label>horas</label>
+                    <input type="text" value={input.duration} name="duration" onChange={e=>handleChange(e)}></input><label> horas</label>
                 </div>
                 <div>
                     <p>Temporada</p>
@@ -148,12 +148,12 @@ export default function CreateActivity(){
 
                 {input.countries.map((e) => 
                 <div key={aux} id={aux}>
-                    <p key={aux++}>{e}</p>
+                    <label key={aux++}>  {e}</label>
                     <button type='button' onClick={() => handleDelete(e)}>X</button>
                 </div> 
                 )}
                 <div>
-                    <button type="submit" disabled={Object.keys(errors).length === 0 ? false : true }>Crear actividad</button>
+                    <button type="submit" className={styles.btn} disabled={Object.keys(errors).length === 0 ? false : true }>Crear actividad</button>
                 </div>
                 </div>
             </form>

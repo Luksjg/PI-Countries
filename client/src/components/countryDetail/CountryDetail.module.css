@@ -32,11 +32,29 @@
     flex: auto;
     margin:15px;
     background-color: white;
-    opacity: 0.9;
+    opacity: 0.85;
     padding: 8px;
     border:1px solid #211C42;
     border-radius: 10px;
 }
+
+.btn:hover{
+    opacity: 0.70;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #211C42;
+}
+
+.errorC{
+    display: inline-block;
+    margin-top: 250px;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #211C42;
+    background-color: white;
+    opacity: 0.95;
+    font-size: 1.2rem;
+}
+
 
 img{  
     margin-top: 15px;

@@ -34,7 +34,6 @@ export default function Home(){
 
 
     function handleSort(e){
-        
         e.preventDefault();
         dispatch(order(e.target.value));
         setCurrentPage(1);
