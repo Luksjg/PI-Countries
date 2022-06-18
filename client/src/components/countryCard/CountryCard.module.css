@@ -1,0 +1,20 @@
+.card{
+    background-color: aliceblue ;
+    opacity: 0.95;
+    list-style: none;
+    font-size: 1.5rem;
+    border-color: #0A201B;
+    padding: 10px;
+    border: 1px solid #211C42;
+    border-radius: 20px;
+}
+  
+.card:hover{
+    opacity: 0.8;
+    background-color: #D6ECF6;
+    outline: none;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #211C42;
+    border-radius: 20px;
+}
+

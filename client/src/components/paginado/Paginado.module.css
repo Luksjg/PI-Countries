@@ -1,0 +1,27 @@
+
+.numbers{
+    text-decoration: none;
+    list-style: none;
+    background-color: #D6ECF6;
+    border-radius: 50px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.numbers:hover{
+    box-shadow: 0 0 7px #211C42;
+}
+
+.number{
+    display: block;
+    width: 30px;
+    height: 30px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.pagesNumber{
+    flex: auto;
+}

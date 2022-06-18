@@ -24,8 +24,9 @@
     border-radius: 20px;
     padding: 5px 50px 5px 10px;
     font-size: 0.8rem;
-    border: 1px solid #BCE0ED;
-    background-color: #BCE0ED;
+    border: 1px solid #211C42;
+    background-color: white;
+    opacity: 0.95;
 }
 
 .searchInput:focus, 

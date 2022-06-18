@@ -4,7 +4,7 @@ import { getCountry } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux';
 import ActivityCard from '../activityCard/ActivityCard.jsx'
 import { Link } from 'react-router-dom';
-
+import styles from "./CountryDetail.module.css"
 
 const CountryDetail = () => {
     
@@ -18,24 +18,25 @@ const CountryDetail = () => {
 
     const country = useSelector((state) => state.country)
 
+    let aux = 1
+
     return (
         <div key={country.name}>
             <div>
-            <Link to='/home'>
-                <button>Volver</button>
-            </Link>
+            <Link to='/home' className={styles.btn}> Volver </Link>
             </div>
+            <div className={styles.countryC}>
             <img src={country.flags} alt={country.name}/>
-            <div>
             <p>País:</p>
             <p>Continente:{country.continent}</p>
-            <p>Capital: {country.capital}</p>
+            <p>Capital: {country.capital} </p>
             <p>Subregión: {country.subregion}</p>
             <p>Área: {country.area} km2</p>
             <p>Población: {country.population} habitantes</p>
-            <div>
+            </div>  
+            <div className={styles.activitiesGrid}>
             {country.activities && country.activities.map((activity) =>
-                <div key={activity.name}>
+                <div key={aux++} className={styles.activitiesC}>
                     <ActivityCard 
                     name={activity.name} 
                     difficulty={activity.difficulty}
@@ -44,7 +45,6 @@ const CountryDetail = () => {
                 </div>
             )}
             </div>
-            </div>  
         </div>
     );
 }

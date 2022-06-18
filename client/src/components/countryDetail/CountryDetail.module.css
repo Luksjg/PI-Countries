@@ -1,0 +1,45 @@
+.countryC{
+    display: inline-block;
+    width: 35%;
+    border-radius: 15px;
+    border: 1px solid #211C42;
+    background-color: white;
+    opacity: 0.95;
+    font-size: 1.2rem;
+}
+
+.activitiesGrid{
+    display: grid;
+    grid-template-columns: repeat(3, 270px);
+    gap: 100px;
+    padding: 40px;
+    justify-content: center;
+}
+
+.activitiesC{
+    background-color: white ;
+    opacity: 0.95;
+    list-style: none;
+    font-size: 1.2rem;
+    border-color: #0A201B;
+    padding: 10px;
+    border: 1px solid #211C42;
+    border-radius: 20px;
+}
+
+.btn{
+    display: inline-block;
+    flex: auto;
+    margin:15px;
+    background-color: white;
+    opacity: 0.9;
+    padding: 8px;
+    border:1px solid #211C42;
+    border-radius: 10px;
+}
+
+img{  
+    margin-top: 15px;
+    width:250px; 
+    height:150px;
+}

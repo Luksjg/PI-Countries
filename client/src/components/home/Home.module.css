@@ -1,49 +1,55 @@
 .main {
     margin: 0; padding: 0;
-    width: 100vw; min-height: 100vh;
-    background-image: url('https://www.ecartelera.com/images/sets/29300/29365.jpg');
-    background-size: cover;
-    background-position-y: 0px;
-    background-repeat: no-repeat;
-    background-color:   #a2b1c1;
-  }
+}
+
+.titleContainer{
+    background-image: linear-gradient(to top, rgba(255,0,0,0), #211C42);
+    padding: 1px;
+}
+
+.title{
+    font-size:20px;
+    line-height:1.5em; 
+    padding-bottom:45px; 
+    font-family:"Playfair Display", serif; 
+    text-transform:uppercase;
+    letter-spacing: 2px; 
+    color: white;
+}
+
+
+.countries{
+    display: grid;
+    grid-template-columns: repeat(3, 270px);
+    gap: 100px;
+    padding: 40px;
+    justify-content: center;
+}
   
-  .landbtn {
-    position: absolute;
-    top: 2%;
-    left: 5%;
-    background-color:transparent;
-    color: rgb(65, 65, 107);
-    border-radius: 15px;
-    border-color:black;
-    cursor: pointer;
-    font-size: 36px;
-      
-  }
-  
-  
-  .createactbtn {
-    position: absolute;
-    top: 9%;
-    left: 5%;
-    background-color:transparent;
-    color: rgb(65, 65, 107);
-    border-radius: 15px;
-    border-color:black;
-    cursor: pointer;
-    font-size: 36px;
-      
-  }
-  
-  .refreshbtn {
-    position: absolute;
-    top: 3%;
-    left: 80%;
-    background-color:transparent;
-    color: black;
-    border-radius: 15px;
-    border-color:black;
-    cursor: pointer;
-    font-size: 16px;
-      
-  }
+
+.select { 
+    padding: 3px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #211C42;
+    background-color: white;
+    opacity: 0.95;
+}
+
+.btnA{
+    margin-top: 20px;
+    flex: auto;
+    display: inline-block;
+    top:100px;
+    background-color: white;
+    opacity: 0.9;
+    padding: 8px;
+    border:1px solid #211C42;
+    border-radius: 10px;
+}
+
+.btnA:hover{
+    box-shadow: 0 0 5px #211C42;
+}
+

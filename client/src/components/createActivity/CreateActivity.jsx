@@ -24,14 +24,17 @@ export default function CreateActivity(){
 
     function validation(e){
         let errors={}
-        if(!/^[A-Za-z]/.test(e.name)){
-            errors.name="Por favor ingrese un nombre valido"
+        if(!/^([A-Za-z]+)$/.test(e.name)){
+            errors.name = "Por favor ingrese un nombre valido"
+        }
+        if(!/^[0-9]+$/.test(e.duration)){
+            errors.duration = "Ingrese solamente horas"
         }
         return errors
     }
 
     function handleCheck(e){
-        console.log(e.target)
+
         if(e.target.checked){
             setInput({
                 ...input, 
@@ -41,7 +44,7 @@ export default function CreateActivity(){
     }
 
     function handleChange(e){
-        console.log(e.target)
+
         setInput({
             ...input, 
             [e.target.name] : e.target.value
@@ -63,12 +66,14 @@ export default function CreateActivity(){
 
         
     function handleSelect(e){
-        console.log(e.target.value)
+
         setInput({
             ...input,
             countries: [...input.countries, e.target.value]
         })
     }
+
+    let aux = 1
     
     async function handleSubmit(e){
         if(!input.name || !input.difficulty || !input.duration || !input.season || input.countries.length < 1){
@@ -119,7 +124,8 @@ export default function CreateActivity(){
                 </div>
                 <div>
                     <p>Duracion</p>
-                    <input type="text" value={input.duration} name="duration" onChange={e=>handleChange(e)}></input>
+                    {errors.duration ? <p> {errors.duration} </p> : null}
+                    <input type="text" value={input.duration} name="duration" onChange={e=>handleChange(e)}></input><label>horas</label>
                 </div>
                 <div>
                     <p>Temporada</p>
@@ -140,9 +146,9 @@ export default function CreateActivity(){
                     </div>
                 </div>
 
-                {input.countries.map((e) =>
-                <div key={e.name} id={e.name}>
-                    <p>{e}</p>
+                {input.countries.map((e) => 
+                <div key={aux} id={aux}>
+                    <p key={aux++}>{e}</p>
                     <button type='button' onClick={() => handleDelete(e)}>X</button>
                 </div> 
                 )}

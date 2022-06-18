@@ -19,7 +19,7 @@ import axios from 'axios'
 // Conexion con el backend
 export function getCountries(order){
     return async function(dispatch){
-        let json = await axios.get('http://localhost:3001/countries?order=' + order);
+        let json = await axios.get('http://localhost:3001/countries');
         const data = json.data
         //const {currentCountries, totalPages} = paginado(data)
         return dispatch({
@@ -72,7 +72,7 @@ export function getByName(name){
     }
 }
 
-export function orderName(payload){
+export function order(payload){
     return {
         type: 'ORDER',
         payload

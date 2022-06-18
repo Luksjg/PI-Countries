@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {getCountries, filterByContinent, filterByActivity, getActivities, orderName}  from "../../actions"
+import {getCountries, filterByContinent, filterByActivity, getActivities, order}  from "../../actions"
 import {Link} from 'react-router-dom'
 import CountryCard from '../countryCard/CountryCard.jsx'
 import Paginado from "../paginado/Paginado.jsx"
 import Nav from "../nav/Nav.jsx";
+import styles from "./Home.module.css"
 
 
 export default function Home(){
@@ -16,11 +17,12 @@ export default function Home(){
     const allActivities = useSelector((state) => state.activities)
     
     const [currentPage, setCurrentPage] = useState(1)
-
+    
     const [loading, reLoading ] = useState("")    
+    //perdon
     
     
-    const countriesPage = 9
+    const countriesPage = 9 
     const LastCountry = currentPage * countriesPage
     const FirstCountry = LastCountry - countriesPage
     const currentCountries = allCountries.slice(FirstCountry, LastCountry)
@@ -32,8 +34,9 @@ export default function Home(){
 
 
     function handleSort(e){
+        
         e.preventDefault();
-        dispatch(orderName(e.target.value));
+        dispatch(order(e.target.value));
         setCurrentPage(1);
         reLoading(e.target.value)
     }
@@ -55,27 +58,28 @@ export default function Home(){
     }, [dispatch])
 
 
+    let aux = 1
 
     return (
         <div>
             
-            <div><Link to={"/"}><h1>Countries</h1></Link></div>
+            <div className={styles.titleContainer}><Link to={"/"} className={styles.title}><h1>-  Countries  -</h1></Link></div>
 
-            <div><Link to={"/activity"}>Crear actividad</Link></div>
 
             <div><Nav/></div>
 
+            
             <div>
                 <div>
-                <label>Tipo de ordenado</label>
-                <select onChange={e => handleSort(e)} >
+                <label className={styles.select}>Tipo de ordenado</label>
+                <select onChange={e => handleSort(e)}  >
                     <option value="asc">Alfabetico</option>
                     <option value="desc">Alfabetico descendente</option>
                     <option value="123">Poblacional</option>
                     <option value="321">Poblacional descendente</option>
                 </select>
 
-                <label>Ordenar por continente</label>
+                <label className={styles.select}>Ordenar por continente</label>
                 <select onChange={e => handleFilterContinent(e)} >
                     <option value="All">Todos</option>
                     <option value="Africa">Africa</option>
@@ -87,19 +91,22 @@ export default function Home(){
                     <option value="Oceania">Oceania</option>
                 </select>
 
-                <label>Actividades</label>
+                <label className={styles.select}>Actividades</label>
                 <select onChange={e => handleFilterActivity(e)} >
                     <option value="All">Todas</option>
                     { allActivities && allActivities.map(activity => (
-                        <option value={activity.name} key={activity.name}>{activity.name}</option>
+                        <option value={activity.name} key={aux++}>{activity.name}</option>
                     ))}
                 </select>
+
+                <div><Link to={"/activity"} className={styles.btnA}>Crear actividad</Link></div>
+
                 </div>
 
                 
-                <ul>
+                <ul className={styles.countries}>
                 {  currentCountries.map(country => (
-                    <div key={country.id}>
+                    <div key={country.id} className="countriesCards">
                     <Link to={'/home/' + country.id}>
                     <CountryCard 
                     name={country.name} 

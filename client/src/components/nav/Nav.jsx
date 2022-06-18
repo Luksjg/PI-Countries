@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getByName } from "../../actions";
-
+import styles from "./Nav.module.css"
 
 export default function Nav() {
   const dispatch = useDispatch();
@@ -13,16 +13,16 @@ export default function Nav() {
   }
 
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = (e) => {
+    e.preventDefault();
     dispatch(getByName(name));
-    setName('')
+    setName("")
   };
   return (
-    <form onSubmit={(event) => handleClick(event)}>
-      <div>
-      <input type="text" placeholder="Buscar pais..." onChange={(e) => handleInputChange(e)}/>
-      <button type="submit">Buscar</button>
+    <form className={styles.searchContainer} onSubmit={(e) => handleClick(e)}>
+      <div className={styles.searchBox}>
+      <input className={styles.searchInput} type="text" placeholder="Buscar pais..." onChange={(e) => handleInputChange(e)}/>
+      <button className={styles.searchButton} type="submit">Buscar</button>
       </div>
     </form>
   );
