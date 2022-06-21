@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ActivityCard from '../activityCard/ActivityCard.jsx'
 import { Link } from 'react-router-dom';
 import styles from "./CountryDetail.module.css"
-
+import stylesErrors from "../Error/Errors.module.css"
 
 const CountryDetail = () => {
     
@@ -24,9 +24,10 @@ const CountryDetail = () => {
     return (
         <div>  
             {!country.id ? 
-            <div className={styles.errorC}>
-                <p>Pais no encontrado</p>
-                <Link to={"/home"} className={styles.btn}>Volver</Link>
+            <div className={stylesErrors.bg}>
+                <h1 className={stylesErrors.error}>404</h1>
+                <p className={stylesErrors.messageError}>Country not found</p>
+                <Link to={"/home"} className={stylesErrors.btn}>Volver</Link>
             </div> : 
             <div key={country.name}>
                 <div>

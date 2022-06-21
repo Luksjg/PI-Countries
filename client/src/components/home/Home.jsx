@@ -19,6 +19,7 @@ export default function Home(){
     const [currentPage, setCurrentPage] = useState(1)
     
     const [loading, reLoading ] = useState("")    
+    console.log(loading)
     //perdon
     
     
@@ -132,4 +133,11 @@ export default function Home(){
 }
 
 
+// function mapStateToProps(state) {
+//     return {
+//       countries: state.countries,
+//       allActivities: state.activities
+//     }
+//   }
 
+//   export default connect(mapStateToProps,null)(Home)

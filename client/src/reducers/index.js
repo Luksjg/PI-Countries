@@ -1,9 +1,7 @@
 import {GET_COUNTRIES, POST_ACTIVITY, GET_COUNTRY, GET_BY_NAME, FILTER_CONTINENT, FILTER_ACTIVITY, GET_ACTIVITY, ORDER} from '../actions'
 
 const initialState = {
-    // Estado para renderizar
     countries : [],
-    // Estado soporte
     allCountries : [],
     activities : [],
     country: []

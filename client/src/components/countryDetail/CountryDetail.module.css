@@ -8,6 +8,10 @@
     font-size: 1.2rem;
 }
 
+img{
+    border: 1px solid black;
+}
+
 .activitiesGrid{
     display: grid;
     grid-template-columns: repeat(3, 270px);

@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-const axios = require('axios');
 const { Country, Activity} = require('../db.js')
-const Sequelize = require('sequelize')
+
 
 
 router.get('/', async (req,res) => {
@@ -33,6 +32,7 @@ router.post("/",async(req,res)=>{
             }) 
             await newActivity.addCountry(activityCountry)
         });
+        
         res.status(200).send('La actividad se creo exitosamente')
     } catch(error) {
         console.log(error)

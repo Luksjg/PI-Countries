@@ -17,9 +17,16 @@
     opacity: 0.5;
     font-family: sans-serif;
     text-align: center;
-    margin-top: 25px;
+    margin-top: 15px;
     font-size: 150px;
     font-weight: 800;    
+}
+
+.messageError{
+    color: white;
+    opacity: 0.5;
+    font-family: sans-serif;
+    font-size: 30px;
 }
 
 .btn{

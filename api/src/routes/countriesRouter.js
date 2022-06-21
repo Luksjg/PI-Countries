@@ -34,25 +34,16 @@ const getCountriesApi = async () => {
 
 
 router.get('/', async (req,res) => {
-    // Se traen todos los paises desde la API a la DB para utilizarlos desde ahi
-    // Se almacenan solo los datos necesarios para la ruta principal 
-    // Se obtiene un listado de los paises
-
-    // Guardo en una constante lo que obtengo de la api
     const countries = await getCountriesApi()
 
     const queryName = req.query.name
-
 
     let bd = await Country.findAll({
         include: {
             model: Activity,
         }
     })
-    // Si no hay datos, se crean
     if(!bd.length){
-        // bulkCreate busca los campos en el objeto y los pasa a la tabla
-        // los datos del objeto para los que no hay campos en la tabla, no los guarda
         await Country.bulkCreate(countries)
     } 
 
@@ -92,9 +83,7 @@ router.get('/:idPais', async (req,res) => {
             model : Activity
         }
     })
-    countryById ?
-    res.status(200).send(countryById):
-    res.status(404).send(":v")
+    countryById ? res.status(200).send(countryById) : res.status(404).send(":(")
 })
 
 module.exports = router;

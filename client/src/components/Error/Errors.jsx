@@ -6,6 +6,7 @@ export default function Errors(){
     return (
         <div className={styles.bg}>
             <h1 className={styles.error}>404</h1>
+            <p className={styles.messageError}>Page not found</p>
             <Link to="/home" >
                 <button className={styles.btn}>Home</button>
             </Link>

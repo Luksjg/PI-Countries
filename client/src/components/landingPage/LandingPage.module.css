@@ -5,6 +5,7 @@
     border-radius: 15px;
     border: 1px solid #211C42;
     background-color: white;
+    box-shadow: 0 0 10px #211C42;
     opacity: 0.9;
 }
 
