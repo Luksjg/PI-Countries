@@ -26,11 +26,15 @@
     justify-content: center;
 }
   
+.loadingImg{
+    margin-top: 250px;
+    border: none;
+}
 
 .select { 
     padding: 3px;
     height: 30px;
-    margin: 5px;
+    margin: 5px 10px;
     border-radius: 5px;
     border: 1px solid #211C42;
     background-color: white;

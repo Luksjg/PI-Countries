@@ -12,6 +12,10 @@ img{
     border: 1px solid black;
 }
 
+.loadingImg{
+    margin-top: 250px;
+    border: none;
+}
 .activitiesGrid{
     display: grid;
     grid-template-columns: repeat(3, 270px);

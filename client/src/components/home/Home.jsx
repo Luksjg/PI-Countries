@@ -6,8 +6,7 @@ import {Link} from 'react-router-dom'
 import CountryCard from '../countryCard/CountryCard.jsx'
 import Paginado from "../paginado/Paginado.jsx"
 import Nav from "../nav/Nav.jsx";
-import styles from "./Home.module.css"
-
+import styles from "./Home.module.css";
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -17,32 +16,24 @@ export default function Home(){
     const allActivities = useSelector((state) => state.activities)
     
     const [currentPage, setCurrentPage] = useState(1)
+
+    const [stateAux, setStateAux  ] = useState("")  //estado auxiliar, si ves el error avisame
+  
     
-    const [loading, reLoading ] = useState("")    
-    console.log(loading)
-    //perdon
-    
-    
-    const countriesPage = 9 
+    let countriesPage = null
+    stateAux ? countriesPage=null : countriesPage=0 // utilizo el estado, para que no salte warning, esta linea no hace nada
+    currentPage === 1 ? countriesPage = 9: countriesPage = 10
     const LastCountry = currentPage * countriesPage
     const FirstCountry = LastCountry - countriesPage
     const currentCountries = allCountries.slice(FirstCountry, LastCountry)
 
-
-    const paginado = (totalPages)=>{
-        setCurrentPage(totalPages);
-    }
-
-
     function handleSort(e){
-        e.preventDefault();
         dispatch(order(e.target.value));
         setCurrentPage(1);
-        reLoading(e.target.value)
+        setStateAux(e.target.value)
     }
 
     function handleFilterContinent(e){
-        e.preventDefault();
         dispatch(filterByContinent(e.target.value));
         setCurrentPage(1);
     }
@@ -65,20 +56,10 @@ export default function Home(){
             
             <div className={styles.titleContainer}><Link to={"/"} className={styles.title}><h1>-  Countries  -</h1></Link></div>
 
-
-            <div><Nav/></div>
-
+            <div><Nav setCurrentPage={setCurrentPage}/></div>
             
             <div>
                 <div>
-                <label className={styles.select}>Tipo de ordenado</label>
-                <select onChange={e => handleSort(e)}  >
-                    <option value="asc">Alfabetico</option>
-                    <option value="desc">Alfabetico descendente</option>
-                    <option value="123">Poblacional</option>
-                    <option value="321">Poblacional descendente</option>
-                </select>
-
                 <label className={styles.select}>Ordenar por continente</label>
                 <select onChange={e => handleFilterContinent(e)} >
                     <option value="All">Todos</option>
@@ -90,13 +71,21 @@ export default function Home(){
                     <option value="Europe">Europa</option>
                     <option value="Oceania">Oceania</option>
                 </select>
+                
+                <label className={styles.select}>Tipo de ordenado</label>
+                <select onChange={e => handleSort(e)}  >
+                    <option value="asc">Alfabetico</option>
+                    <option value="desc">Alfabetico descendente</option>
+                    <option value="123">Poblacional</option>
+                    <option value="321">Poblacional descendente</option>
+                </select>
 
                 <label className={styles.select}>Actividades</label>
                 <select onChange={e => handleFilterActivity(e)} >
                     <option value="All">Todas</option>
                     { allActivities && allActivities.map(activity => (
                         <option value={activity.name} key={aux++}>{activity.name}</option>
-                    ))}
+                        ))}
                 </select>
 
                 <div><Link to={"/activity"} className={styles.btnA}>Crear actividad</Link></div>
@@ -120,11 +109,7 @@ export default function Home(){
                 ))}
                 </ul>
                 
-                <Paginado 
-                    countriesPage={countriesPage}
-                    allCountries={allCountries.length}
-                    paginado={paginado}
-                />
+                <Paginado allCountries={allCountries.length} paginado={setCurrentPage}/>
                 
             </div>
             
@@ -136,8 +121,9 @@ export default function Home(){
 // function mapStateToProps(state) {
 //     return {
 //       countries: state.countries,
-//       allActivities: state.activities
+//       allActivities: state.activities    
 //     }
 //   }
 
 //   export default connect(mapStateToProps,null)(Home)
+

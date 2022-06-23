@@ -1,14 +1,11 @@
 const { Router } = require('express');
-// Importar todos los routers;
 
 const Sequelize = require('sequelize')
 
 const axios = require('axios');
 
-//Traemos las tablas de db
 const { Country, Activity} = require('../db.js');
 
-// const Countries = require('./countries.js');
 
 const router = Router();
 
@@ -85,5 +82,7 @@ router.get('/:idPais', async (req,res) => {
     })
     countryById ? res.status(200).send(countryById) : res.status(404).send(":(")
 })
+
+
 
 module.exports = router;

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getByName } from "../../actions";
 import styles from "./Nav.module.css"
 
-export default function Nav() {
+export default function Nav({setCurrentPage}) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -17,7 +17,9 @@ export default function Nav() {
     e.preventDefault();
     dispatch(getByName(name));
     setName("")
+    setCurrentPage(1)
   };
+
   return (
     <form className={styles.searchContainer} onSubmit={(e) => handleClick(e)}>
       <div className={styles.searchBox}>

@@ -6,21 +6,31 @@ import ActivityCard from '../activityCard/ActivityCard.jsx'
 import { Link } from 'react-router-dom';
 import styles from "./CountryDetail.module.css"
 import stylesErrors from "../Error/Errors.module.css"
+import { useState } from 'react';
+import loadingImg from "../../images/loadingWorld.gif"
 
 const CountryDetail = () => {
     
     const {countryId} = useParams();
     const dispatch = useDispatch();
     
+    const [loading, setLoading] = useState(true)
     
     useEffect(() => {
         dispatch(getCountry(countryId));
+        setTimeout(()=>{setLoading(false)},2000)
       }, [dispatch, countryId]);
 
     const country = useSelector((state) => state.country)
 
     let aux = 1
 
+
+    if(loading){
+    return(
+        <img src={loadingImg} alt='cargando' className={styles.loadingImg}/>
+    )
+    }else{
     return (
         <div>  
             {!country.id ? 
@@ -55,7 +65,7 @@ const CountryDetail = () => {
                 </div>
             </div>} 
         </div>
-    )
+    )}
 }
 
 export default CountryDetail;
